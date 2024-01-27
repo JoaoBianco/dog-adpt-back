@@ -11,19 +11,19 @@ export class DogsService {
     return await this.prisma.dog.create({ data: createDogDto });
   }
 
-  findAll() {
-    return `This action returns all dogs`;
+  async findAll() {
+    return await this.prisma.dog.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} dog`;
+  async findOne(id: number) {
+    return await this.prisma.dog.findUnique({ where: { id } });
   }
 
   async update(id: number, updateDogDto: UpdateDogDto) {
     return await this.prisma.dog.update({ data: updateDogDto, where: { id } });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} dog`;
+  async remove(id: number) {
+    return await this.prisma.dog.delete({ where: { id } });
   }
 }

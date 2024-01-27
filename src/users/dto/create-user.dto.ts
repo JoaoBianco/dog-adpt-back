@@ -1,4 +1,4 @@
-import { Owner } from '@prisma/client';
+import { User } from '@prisma/client';
 import {
   IsEmail,
   IsNotEmpty,
@@ -7,7 +7,7 @@ import {
   IsString,
 } from 'class-validator';
 
-export class CreateOwnerDto implements Partial<Owner> {
+export class CreateUserDto implements Partial<User> {
   @IsNotEmpty()
   @IsNumber()
   age: number;
@@ -24,4 +24,8 @@ export class CreateOwnerDto implements Partial<Owner> {
   @IsString()
   @IsEmail()
   email: string;
+
+  @IsString()
+  @IsNotEmpty()
+  password: string;
 }

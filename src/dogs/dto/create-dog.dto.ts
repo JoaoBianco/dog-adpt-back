@@ -7,6 +7,7 @@ export class CreateDogDto implements Dog {
   id: number;
   isAdopted: boolean;
   name: string;
-  ownerId: number;
+  userId: number;
   updatedAt: Date;
+  UserId: number;
 }
