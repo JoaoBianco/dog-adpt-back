@@ -32,6 +32,23 @@ export class AuthService {
     return {
       ...parsedUser,
       access_token: this.jwtService.sign(payload),
+      refresh_token: this.jwtService.sign(payload, { expiresIn: '7d' }),
+    };
+  }
+
+  async refresh(user) {
+    let userData = this.jwtService.decode(user);
+    userData = {
+      email: userData.email,
+      sub: {
+        id: userData.sub.id,
+        name: userData.sub.name,
+        isAdmin: userData.sub.isAdmin,
+      },
+    };
+
+    return {
+      access_token: this.jwtService.sign(userData),
     };
   }
 }

@@ -5,10 +5,20 @@ import { JwtModule } from '@nestjs/jwt';
 import { LocalStrategy } from './strategies/local-strategy';
 import { UsersService } from 'src/users/users.service';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { PassportModule } from '@nestjs/passport';
+import { JwtStrategy } from './strategies/jwt-strategy';
+import { JwtAdminStrategy } from './strategies/jwt-admin-strategy';
+import { RefreshJwtStrategy } from './strategies/refreshToken-strategy';
 
 @Module({
-  providers: [AuthService, UsersService, LocalStrategy, PrismaService],
+  providers: [
+    AuthService,
+    UsersService,
+    LocalStrategy,
+    PrismaService,
+    JwtStrategy,
+    JwtAdminStrategy,
+    RefreshJwtStrategy,
+  ],
   controllers: [AuthController],
   imports: [
     JwtModule.register({
